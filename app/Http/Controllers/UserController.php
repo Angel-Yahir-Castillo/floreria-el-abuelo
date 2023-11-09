@@ -38,7 +38,7 @@ class UserController extends Controller
 
        if($user->save()){
             Auth::login($user);
-            return redirect(route('user.sesion'));
+            return redirect(route('home'))->with('info','Te has registrado');
         }
         else{
             return redirect(route('user.registro'));
@@ -68,7 +68,10 @@ class UserController extends Controller
 
             $request->session()->regenerate();
 
-            return redirect(route('user.sesion'));
+            if(Auth::user()->isAdmin == 1){
+                return redirect(route('admin'))->with('info','Administrador');
+            }
+            return redirect(route('home'))->with('info','Sesion iniciada');
         }
 
         if(count($user) >0){
@@ -94,6 +97,6 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect(route('home'));
+        return redirect(route('home'))->with('info','Se ha cerrado la sesion');
     }
 }

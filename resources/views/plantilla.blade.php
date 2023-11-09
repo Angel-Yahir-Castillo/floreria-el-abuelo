@@ -10,12 +10,16 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     @yield('meta')
     <title>@yield('title')</title>
+    @laravelPWA
+    
 </head>
 <body>
+
+    @guest
     <div class="navbar-fixed">
         <nav style="background-color: #F82DD7;" >
             <div class="nav-wrapper">
-                <a href="{{ route('home')}}" class="brand-logo center white-text">Floreria El Abuelo</a>
+                <a href="{{ route('home')}}" class="brand-logo center white-text">El Abuelo</a>
                 <a href="#" data-target="menu-responsive" class="sidenav-trigger">
                     <i class="material-icons">menu</i>
                 </a>
@@ -45,7 +49,7 @@
     <ul class="sidenav" style="background-color: #fff"  id="menu-responsive">
         <li><a  href="{{ route('home')}}" style="<?php if(request()->Is('/')) echo 'background-color: #D1CFD1; color:#000;';?>" class=""><b>Inicio</b></a></li> 
         <li>
-            <a class="" href="{{ route('productos.show') }}" style="<?php if(request()->Is('productos/*') or request()->Is('productos')) echo 'background-color: #F4B41A; color:#000;'; ?>">
+            <a class="" href="{{ route('productos.show') }}" style="<?php if(request()->Is('productos/*') or request()->Is('productos')) echo 'background-color: #D1CFD1; color:#000;'; ?>">
                 <b>Productos</b>
                 <i class="material-icons left">
                 filter_vintage
@@ -103,11 +107,87 @@
         </li>
     </ul>
 
+    @endguest
+
+    @auth
+    <div class="navbar-fixed">
+        <nav style="background-color: #F82DD7;" >
+            <div class="nav-wrapper">
+                <a href="{{ route('home')}}" class="brand-logo center white-text">El Abuelo</a>
+                <a href="#" data-target="menu-responsiveA" class="sidenav-trigger">
+                    <i class="material-icons">menu</i>
+                </a>
+                <ul class="right hide-on-med-and-down" style="padding-right:20px">
+                    <li><a  href="{{ route('home')}}" style="<?php if(request()->Is('/')) echo 'background-color: #D1CFD1; color:#000;';?>" class=""><b>Inicio</b></a></li> 
+                    <li>
+                        <a class="" href="{{ route('productos.show') }}" style="<?php if(request()->Is('productos/*') or request()->Is('productos')) echo 'background-color: #D1CFD1; color:#000;'; ?>">
+                            <b>Productos</b>
+                            <i class="material-icons left">
+                            filter_vintage
+                            </i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-trigger" href="#" data-target="id_sesiones" style="<?php if (request()->Is('login') or request()->Is('registro')) echo 'background-color: #D1CFD1; color:#000;'; ;?>">
+                            <b>{{Auth::user()->name}}</b>
+                            <i class="material-icons left">
+                                account_circle
+                            </i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <ul class="sidenav" style="background-color: #fff"  id="menu-responsiveA">
+        <li><a  href="{{ route('home')}}" style="<?php if(request()->Is('/')) echo 'background-color: #D1CFD1; color:#000;';?>" class=""><b>Inicio</b></a></li> 
+        <li>
+            <a class="" href="{{ route('productos.show') }}" style="<?php if(request()->Is('productos/*') or request()->Is('productos')) echo 'background-color: #D1CFD1; color:#000;'; ?>">
+                <b>Productos</b>
+                <i class="material-icons left">
+                filter_vintage
+                </i>
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-trigger" href="#" data-target="id_sesionResp" style="<?php if (request()->Is('login') or request()->Is('registro')) echo 'background-color: #D1CFD1; color:#000;'; ;?>">
+                <b>{{Auth::user()->name}}</b>
+                <i class="material-icons left">
+                    account_circle
+                </i>
+            </a>
+        </li>
+    </ul>
+
+    <ul id="id_sesiones" class="dropdown-content">
+        <li>
+            <a class="black-text" href="#">
+                Mi Cuenta
+                <i class="material-icons left">
+                    person
+                </i>
+            </a>
+        </li>
+        <li class="divider"></li>
+        <li>
+            <a class="black-text" href="{{ route('user.logout') }}">
+                Salir
+                <i class="material-icons left">
+                    logout
+                </i>
+            </a>
+        </li>
+    </ul>
+
+    @endauth
+
     <div class="container section">
         @yield('content')
     </div>
     
-    @auth
+    
+
     <footer class="page-footer" style="background-color: #F82DD7;">
         <div class="container">
         <div class="row">
@@ -133,12 +213,10 @@
         </div>
         </div>
     </footer>
-    @endauth
+    
 
-
-
-    @yield('scripts')
-
+    <script src="{{asset('js/notificaciones.js')}}"></script>
+    
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
@@ -147,5 +225,8 @@
             M.AutoInit();
         });
     </script>
+
+    <button onclick="enviarNotificacion()">si</button>
+    @yield('scripts')
 </body>
 </html>

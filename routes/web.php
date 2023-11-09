@@ -36,12 +36,6 @@ Route::get('productos/{producto}', [ProductsController::class, 'productoVer'])->
 
 
 
-
-
-
-
-
-
 Route::get('login', [UserController::class, 'login'])->name('user.login');
 
 Route::get('registro', [UserController::class, 'register'])->name('user.registro');
@@ -54,3 +48,6 @@ Route::post('validar-registro',[UserController::class, 'validar_register'])->nam
 Route::post('inicia-sesion',[UserController::class, 'inicia_sesion'])->name('inicia.sesion');
 
 Route::get('logout',[UserController::class, 'logout'])->name('user.logout');
+
+
+Route::post('reseña',[ComentsController::class, 'store'])->name('calificar');

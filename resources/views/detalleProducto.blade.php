@@ -5,32 +5,7 @@
 @section('content')
 
     <div class="row ">
-        <form action="{{ route('busqueda.avanzada') }}" method="get" class="col l6 m6 s12">
-            <div class="row">
-                <div class="input-field col l4 m5 s5 ">
-                    <select name="marca"> 
-                        <option value="DELL">DELL</option>
-                        <option value="HP">HP</option>
-                        <option value="LENOVO">LENOVO</option>
-                        <option value="ASUS">ASUS</option>
-                        <option value="MOTOROLA">MOTOROLA</option>
-                        <option value="SAMSUMG">SAMSUMG</option>
-                        <option value="HUAWEI" selected>HUAWEI</option>
-                    </select>
-                    <label>Marca</label>
-                </div>
-                <div class="input-field col l4 m5 s6 ">
-                    <select name="categoria"> 
-                        <option value="computadoras">LAPTOPS</option>
-                        <option value="tablets">TABLETS</option>
-                        <option value="smarthphones" selected>TELEFONO</option>
-                    </select>
-                    <label>Categoria</label>
-                </div>
-                <div class="col s1">
-                    <button style="background-color: #fff; border:#fff; cursor:pointer;" type="submit" value=""><i class="material-icons medium">search</i></button>
-                </div>
-            </div>
+        <form action="" method="get" class="col l6 m6 s12">
         </form>
 
         <div class="col m0 l1 s0 "></div>
@@ -68,6 +43,49 @@
     <br><br>
     <div class="row">
         <center><h4>Reseñas de este producto</h4></center>
+        @guest
+            <center> Para poder escribir una reseña <a class="" href="{{ route('user.login') }}">Inicia sesion</a></center>
+        @endguest
+        @auth
+        <div class="col s12">
+            <div class="row ">      
+                <form action="{{ route('calificar') }}" id="" method="POST" class="col s12">
+                    @csrf 
+                    <div class="row card-panel">
+                        <center><b>Escribe una reseña</b></center>
+                        <input type="hidden" name="producto" value="{{$producto->id}}">
+                        <div class="input-field col s12">
+                            <input id="titulo" type="text" value="{{ old('titulo') }}" name="titulo" class="validate" required>
+                            <label for="titulo">Titulo:</label>
+                            <small style="color: red;">@error('titulo') {{ $message }} @enderror</small> 
+                        </div>
+                        <div class="input-field col s12">
+                            <input id="descripcion" type="text" value="{{ old('descripcion') }}" name="descripcion" class="validate" required>
+                            <label for="descripcion">Experiencia:</label>
+                            <small style="color: red;">@error('descripcion') {{ $message }} @enderror</small> 
+                        </div>
+
+                        <div class="input-field col s12 ">
+                            <select id="calificacion" name="calificacion">
+                                <option value="1">1 estrellas</option>
+                                <option value="2">2 estrellas</option>
+                                <option value="3">3 estrellas</option>
+                                <option value="4">4 estrellas</option>
+                                <option value="5">5 estrellas</option>
+                            </select>
+                            <label>Calificacion</label>
+                        </div>
+
+                        <center><button class="btn waves-effect waves-light" type="submit" onclick="" value="">Comentar
+                            <i class="material-icons left">
+                            forum
+                            </i>
+                        </button></center>
+                    </div>
+                </form>
+            </div>
+        </div>
+        @endauth
         <div class="col s12">
             @if (count($comentarios) == 0)
                 <h5>No se encontraron reseñas</h5>
@@ -89,5 +107,18 @@
             @endif
         </div>
     </div>
-    
+
+
+@endsection
+
+@section('scripts')
+    @if (session('info'))
+        <script>
+            M.toast({
+                html: '{{ session("info")}} ',
+                classes: 'black',
+                displayLength: 3000,
+            })
+        </script>
+    @endif
 @endsection
