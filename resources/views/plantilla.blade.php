@@ -19,26 +19,20 @@
     <div class="navbar-fixed">
         <nav style="background-color: #F82DD7;" >
             <div class="nav-wrapper">
-                <a href="{{ route('home')}}" class="brand-logo center white-text">El Abuelo</a>
+                <a href="{{ route('home')}}" class="brand-logo right white-text">El Abuelo</a>
                 <a href="#" data-target="menu-responsive" class="sidenav-trigger">
                     <i class="material-icons">menu</i>
                 </a>
-                <ul class="right hide-on-med-and-down" style="padding-right:20px">
+                <ul class="left hide-on-med-and-down" style="padding-right:20px">
                     <li><a  href="{{ route('home')}}" style="<?php if(request()->Is('/')) echo 'background-color: #D1CFD1; color:#000;';?>" class=""><b>Inicio</b></a></li> 
                     <li>
                         <a class="" href="{{ route('productos.show') }}" style="<?php if(request()->Is('productos/*') or request()->Is('productos')) echo 'background-color: #D1CFD1; color:#000;'; ?>">
                             <b>Productos</b>
-                            <i class="material-icons left">
-                            filter_vintage
-                            </i>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-trigger" href="#" data-target="id_sesiones" style="<?php if (request()->Is('login') or request()->Is('registro')) echo 'background-color: #D1CFD1; color:#000;'; ;?>">
                             <b>Cuenta</b>
-                            <i class="material-icons left">
-                                account_circle
-                            </i>
                         </a>
                     </li>
                 </ul>
@@ -51,7 +45,7 @@
         <li>
             <a class="" href="{{ route('productos.show') }}" style="<?php if(request()->Is('productos/*') or request()->Is('productos')) echo 'background-color: #D1CFD1; color:#000;'; ?>">
                 <b>Productos</b>
-                <i class="material-icons left">
+                <i class="material-icons center">
                 filter_vintage
                 </i>
             </a>
@@ -59,7 +53,7 @@
         <li>
             <a class="dropdown-trigger" href="#" data-target="id_sesionResp" style="<?php if (request()->Is('login') or request()->Is('registro')) echo 'background-color: #D1CFD1; color:#000;'; ;?>">
                 <b>Cuenta</b>
-                <i class="material-icons left">
+                <i class="material-icons center">
                     account_circle
                 </i>
             </a>
@@ -71,18 +65,12 @@
         <li>
             <a class="black-text" href="{{ route('user.login') }}">
                 Login
-                <i class="material-icons left">
-                    person
-                </i>
             </a>
         </li>
         <li class="divider"></li>
         <li>
             <a class="black-text" href="{{ route('user.registro') }}">
                 Registrarse
-                <i class="material-icons left">
-                    person_add
-                </i>
             </a>
         </li>
     </ul>
@@ -91,18 +79,12 @@
         <li>
             <a class="black-text" href="{{ route('user.login') }}">
                 Iniciar sesion
-                <i class="material-icons left">
-                    person
-                </i>
             </a>
         </li>
         <li class="divider"></li>
         <li>
             <a class="black-text" href="{{ route('user.registro') }}">
                 Registrarse
-                <i class="material-icons left">
-                    person_add
-                </i>
             </a>
         </li>
     </ul>
@@ -113,26 +95,20 @@
     <div class="navbar-fixed">
         <nav style="background-color: #F82DD7;" >
             <div class="nav-wrapper">
-                <a href="{{ route('home')}}" class="brand-logo center white-text">El Abuelo</a>
+                <a href="{{ route('home')}}" class="brand-logo right white-text">El Abuelo</a>
                 <a href="#" data-target="menu-responsiveA" class="sidenav-trigger">
                     <i class="material-icons">menu</i>
                 </a>
-                <ul class="right hide-on-med-and-down" style="padding-right:20px">
+                <ul class="left hide-on-med-and-down" style="padding-right:20px">
                     <li><a  href="{{ route('home')}}" style="<?php if(request()->Is('/')) echo 'background-color: #D1CFD1; color:#000;';?>" class=""><b>Inicio</b></a></li> 
                     <li>
                         <a class="" href="{{ route('productos.show') }}" style="<?php if(request()->Is('productos/*') or request()->Is('productos')) echo 'background-color: #D1CFD1; color:#000;'; ?>">
                             <b>Productos</b>
-                            <i class="material-icons left">
-                            filter_vintage
-                            </i>
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-trigger" href="#" data-target="id_sesiones" style="<?php if (request()->Is('login') or request()->Is('registro')) echo 'background-color: #D1CFD1; color:#000;'; ;?>">
+                        <a class="dropdown-trigger" href="#" data-target="id_sesionesA" style="<?php if (request()->Is('login') or request()->Is('registro')) echo 'background-color: #D1CFD1; color:#000;'; ;?>">
                             <b>{{Auth::user()->name}}</b>
-                            <i class="material-icons left">
-                                account_circle
-                            </i>
                         </a>
                     </li>
                 </ul>
@@ -145,44 +121,85 @@
         <li>
             <a class="" href="{{ route('productos.show') }}" style="<?php if(request()->Is('productos/*') or request()->Is('productos')) echo 'background-color: #D1CFD1; color:#000;'; ?>">
                 <b>Productos</b>
-                <i class="material-icons left">
+                <i class="material-icons center">
                 filter_vintage
                 </i>
             </a>
         </li>
         <li>
-            <a class="dropdown-trigger" href="#" data-target="id_sesionResp" style="<?php if (request()->Is('login') or request()->Is('registro')) echo 'background-color: #D1CFD1; color:#000;'; ;?>">
+            <a class="dropdown-trigger" href="#" data-target="id_sesionRespA" style="<?php if (request()->Is('login') or request()->Is('registro')) echo 'background-color: #D1CFD1; color:#000;'; ;?>">
                 <b>{{Auth::user()->name}}</b>
-                <i class="material-icons left">
+                <i class="material-icons center">
                     account_circle
                 </i>
             </a>
         </li>
     </ul>
 
+
+
+    @endauth
+
     <ul id="id_sesiones" class="dropdown-content">
         <li>
-            <a class="black-text" href="#">
-                Mi Cuenta
-                <i class="material-icons left">
-                    person
+            <a class="black-text" href="{{ route('user.login') }}">
+                Login
+            </a>
+        </li>
+        <li class="divider"></li>
+        <li>
+            <a class="black-text" href="{{ route('user.registro') }}">
+                Registrarse
+            </a>
+        </li>
+    </ul>
+
+    <ul id="id_sesionResp" class="dropdown-content">
+        <li>
+            <a class="black-text" href="{{ route('user.login') }}">
+                Iniciar sesion
+            </a>
+        </li>
+        <li class="divider"></li>
+        <li>
+            <a class="black-text" href="{{ route('user.registro') }}">
+                Registrarse
+                <i class="material-icons center">
+                    person_add
                 </i>
+            </a>
+        </li>
+    </ul>
+
+    <ul id="id_sesionesA" class="dropdown-content">
+        <li>
+            <a class="black-text" href="#">
+                Mi cuenta
             </a>
         </li>
         <li class="divider"></li>
         <li>
             <a class="black-text" href="{{ route('user.logout') }}">
                 Salir
-                <i class="material-icons left">
-                    logout
-                </i>
             </a>
         </li>
     </ul>
 
-    @endauth
+    <ul id="id_sesionRespA" class="dropdown-content">
+        <li>
+            <a class="black-text" href="#">
+                Mi cuenta
+            </a>
+        </li>
+        <li class="divider"></li>
+        <li>
+            <a class="black-text" href="{{ route('user.logout') }}">
+                Salir
+            </a>
+        </li>
+    </ul>
 
-    <div class="container section">
+    <div class="section" style="padding: 10px;">
         @yield('content')
     </div>
     
@@ -194,15 +211,15 @@
             <div class="col l6 s12">
             <h5 class="white-text">Nosotros</h5>
             <ul>
-                <li><a class="grey-text text-lighten-3" href="#!">¿Quienes somos?</a></li>
+                <li><a class="grey-text text-lighten-3" href="{{ route('nosotros')}}">¿Quienes somos?</a></li>
                 <li><p>Ubicacion: Calle Yucatan #22, Colonia 5 de Mayo</p></li>
             </ul>
             </div>
             <div class="col l4 offset-l2 s12">
             <h5 class="white-text">Legal</h5>
             <ul>
-                <li><a class="grey-text text-lighten-3" href="#!">Politica de privacidad</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Terminos y condiciones</a></li>
+                <li><a class="grey-text text-lighten-3" href="{{ route('politica')}}">Politica de privacidad</a></li>
+                <li><a class="grey-text text-lighten-3" href="{{ route('terminos')}}">Terminos y condiciones</a></li>
             </ul>
             </div>
         </div>
@@ -226,7 +243,6 @@
         });
     </script>
 
-    <button onclick="enviarNotificacion()">si</button>
     @yield('scripts')
 </body>
 </html>

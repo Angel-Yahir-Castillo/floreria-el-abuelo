@@ -5,11 +5,7 @@
 @section('content')
 
     <div class="row ">
-        <form action="" method="get" class="col l6 m6 s12">
-        </form>
-
-        <div class="col m0 l1 s0 "></div>
-        
+       
         <form action="{{ route('busqueda.simple') }}" method="get" class="col l5 m6 s12">
             <div class="row ">
                 <div class="input-field col s11">
@@ -17,7 +13,7 @@
                     <label for="nombre">Buscar Producto:</label>
                 </div>
                 <div class="col s1">
-                    <button style="background-color: #fff; border:#fff; cursor:pointer;" type="submit" value=""><i class="material-icons medium">search</i></button>
+                    <button class="btn" type="submit" value="">Buscar</button>
                 </div>
             </div>
         </form>
@@ -34,8 +30,9 @@
                     <p>{{$producto->descripcion}}</p>
                     <h5>$ {{$producto->precio}}</h5>
                     <h6>Color: {{$producto->color}}</h6>
-                    <h6>Stok: {{$producto->stok}} disponibles</h6>
+                    <h6>Stock: {{$producto->stok}} disponibles</h6>
                 </div>
+
             </div>
         </div>
     </div>
@@ -93,14 +90,13 @@
                 @foreach ($comentarios as $comentario)
                     <div class="row z-depth-2 section">
                         <div class="col s12 m4 l3">
-                            <img class="responsive-img" src="{{ asset('img/hombre.png') }}">
+                           <center><img class="responsive-img" style="max-height: 200px;" src="{{ asset('img/hombre.png') }}"></center> 
                         </div>
                         <div class="col s12 m8 l9">
                             <h4 class="black-text">{{$comentario->titulo}}</h4>
                             <p>{{$comentario->comentario}}</p>
                             <h6>Cliente: {{$comentario->name}}</h6>
                             <h6>Calificacion: {{$comentario->estrellas}} estrellas</h6>
-                            <h6>{{$comentario->created_at}}</h6>
                         </div>
                     </div>
                 @endforeach

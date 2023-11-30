@@ -20,3 +20,16 @@ function enviarNotificacion(){
         }
     }
 }
+
+function mandarNotificacion(nombre){
+  if(Notification.permission === 'granted'){
+      const notificacion = new Notification('Dejanos tu opinion',{
+          icon: 'http://127.0.0.1:8000/img/productos/13556_Ramo_de_Amor_con_12_Rosas_Rojas.jpg',
+          body: 'Dinos que te parecio '+ nombre,
+      });
+
+      notificacion.onclick = function(){
+          window.open('http://127.0.0.1:8000/productos/'+nombre);
+      }
+  }
+}

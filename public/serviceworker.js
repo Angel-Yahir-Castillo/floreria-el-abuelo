@@ -1,6 +1,5 @@
-var staticCacheName = "prophysio-static";
-//var dynamicCacheName = "prophysio-dyna";
-var inmutableCacheName = "prophysio-inmutable";
+var staticCacheName = "cache-static";
+var inmutableCacheName = "cache-inmutable";
 
 const APP_SHELL = [
     '/images/icons/icon-72.png',
@@ -9,14 +8,13 @@ const APP_SHELL = [
     '/images/icons/icon-192.png',
     '/images/icons/icon-384.png',
     '/images/icons/icon-512.png',
-   // '/css/app.css',
-    //'/js/app.js',
 ];
 
 const APP_SHELL_INMUTABLE = [
     'https://fonts.googleapis.com/icon?family=Material+Icons',
     'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css',
     'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js',
+    '/offline',
 ];
 
 // Cache on install
@@ -41,8 +39,7 @@ self.addEventListener('activate', event => {
         caches.keys().then(cacheNames => {
             return Promise.all(
                 cacheNames
-                    .filter(cacheName => (cacheName.startsWith("prophysio-")))
-                    //.filter(cacheName => (cacheName !== staticCacheName))
+                    .filter(cacheName => (cacheName.startsWith("cache-")))
                     .filter(cacheName => (cacheName !== inmutableCacheName && cacheName !== staticCacheName))
                     .map(cacheName => caches.delete(cacheName))
             );
@@ -51,8 +48,7 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-    const cacheName = 'prophysio-dyna-' + event.request.url.pathname; // Nombre de caché basado en la ruta
-  
+    const cacheName = 'cache-dyna-' + event.request.url.pathname; 
     event.respondWith(
       fetch(event.request)
         .then(responseFromNetwork => {
@@ -86,43 +82,3 @@ self.addEventListener('fetch', event => {
   });
   
   
-  
-/*  laravel-pwa
-// Serve from Cache
-self.addEventListener("fetch", event => {
-    event.respondWith(
-        caches.match(event.request)
-            .then(response => {
-                return response || fetch(event.request);
-            })
-            .catch(() => {
-                return caches.match('offline');
-            })
-    )
-});*/
-
-/*
-  
-  //una vez que se instala el SW, se activa y busca los recursos para hacer que funcione sin conexión
-  self.addEventListener('activate', e => {
-    const cacheWhitelist = [CACHE_NAME]
-  
-    e.waitUntil(
-      caches.keys()
-        .then(cacheNames => {
-          return Promise.all(
-            cacheNames.map(cacheName => {
-              //Eliminamos lo que ya no se necesita en cache
-              if (cacheWhitelist.indexOf(cacheName) === -1) {
-                return caches.delete(cacheName)
-              }
-            })
-          )
-        })
-        // Le indica al SW activar el cache actual
-        .then(() => self.clients.claim())
-    )
-  })
-  
-
-  */

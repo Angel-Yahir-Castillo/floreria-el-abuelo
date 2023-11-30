@@ -68,9 +68,6 @@ class UserController extends Controller
 
             $request->session()->regenerate();
 
-            if(Auth::user()->isAdmin == 1){
-                return redirect(route('admin'))->with('info','Administrador');
-            }
             return redirect(route('home'))->with('info','Sesion iniciada');
         }
 

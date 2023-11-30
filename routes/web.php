@@ -19,7 +19,9 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-
+Route::get('politica-privacidad', function () { return view('politica'); })->name('politica');
+Route::get('terminos-condiciones', function () { return view('terminos'); })->name('terminos');
+Route::get('quienes-somos', function () { return view('nosotros'); })->name('nosotros');
 
 Route::get('offline',function () {
     return view('vendor.laravelpwa.offline');
